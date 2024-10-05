@@ -1,0 +1,82 @@
+<!-- Barra de navegación de Bootstrap -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'index' %}">Vehículos</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <!-- Menú Inicio -->
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+        </li>
+
+        <!-- Solo mostrar "Agregar Vehículo" si tiene permiso para agregar -->
+        {% if perms.vehiculo.add_vehiculomodel %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'agregar_vehiculo' %}"
+            >Agregar</a
+          >
+        </li>
+        {% endif %}
+
+        <!-- Solo mostrar "Listar Vehículos" si tiene permiso para listar -->
+        {% if perms.vehiculo.visualizar_catalogo %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'listar_vehiculos' %}"
+            >Listar</a
+          >
+        </li>
+        {% endif %}
+      </ul>
+
+      <ul class="navbar-nav ms-auto">
+        <!-- Si el usuario está autenticado -->
+        {% if user.is_authenticated %}
+        <!-- Mostrar el nombre del usuario logueado -->
+        <li class="nav-item d-flex align-items-center">
+          <span class="navbar-text m-3">
+            <i class="fas fa-user-circle me-2"></i>
+            <!-- Icono de usuario -->
+            <strong>Hola, {{ user.username }}</strong>
+            <!-- Nombre del usuario en negrita -->
+          </span>
+        </li>
+        <!-- Formulario para cerrar sesión con POST -->
+        <li class="nav-item d-flex align-items-center">
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger">
+              Cerrar Sesión
+            </button>
+          </form>
+        </li>
+        {% else %}
+        <!-- Si no está autenticado, mostrar opción de iniciar sesión -->
+        <li class="nav-item">
+          <a class="btn btn-outline-primary btn-sm" href="{% url 'login' %}"
+            >Iniciar Sesión</a
+          >
+        </li>
+        <li class="nav-item">
+          <!-- templates/navbar.html -->
+          <a
+            href="{% url 'registro' %}"
+            class="btn btn-outline-success btn-sm ms-2"
+            >Registrarse</a
+          >
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Inicio - Catálogo de Vehículos{% endblock %}
+{% block content %}
+<div class="jumbotron text-center-custom">
+  <h1 class="display-4 text-center-custom">Catálogo de Vehículos</h1>
+  <img src="{% static 'images/auto.png' %}" alt="Auto" class="img-fluid small-image" />
+  <p class="lead">Bienvenido a la tienda virtual de vehículos.</p>
+  <hr class="my-4" />
+  <p>Utiliza el menú para agregar o listar vehículos.</p>
+</div>
+{% endblock %}

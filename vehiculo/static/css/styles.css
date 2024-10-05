@@ -1,0 +1,18 @@
+/* static/css/styles.css */
+.small-image {
+    width: 800px; /* Ajusta el tamaño según tus necesidades */
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .text-center-custom {
+    text-align: center;
+  }
+
+  /* Estilo para desvanecer el mensaje */
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease-out; /* Transición de 1 segundo para el desvanecimiento */
+  }
